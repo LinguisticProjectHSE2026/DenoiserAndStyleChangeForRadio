@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from denoiser.process import process as denoise
+from preprocessor import Preprocessor
 from style_changer.process import process as change_style
 
 INPUT_DIR = Path("input")
@@ -11,6 +11,7 @@ AUDIO_EXTENSIONS = {".wav", ".mp3", ".flac", ".ogg", ".m4a"}
 
 
 def run() -> None:
+    preprocessor = Preprocessor(debug=True)
     for input_file in INPUT_DIR.iterdir():
         if input_file.suffix.lower() not in AUDIO_EXTENSIONS:
             continue
@@ -18,7 +19,7 @@ def run() -> None:
         output_file = OUTPUT_DIR / input_file.name
 
         print(f"Denoising:      {input_file} -> {TMP_DIR}/{{speech,singing}}/")
-        denoise(input_file, TMP_DIR)
+        preprocessor.process(input_file, TMP_DIR)
 
         print(f"Style changing: {TMP_DIR}/ -> {output_file}")
         change_style(TMP_DIR, output_file)
