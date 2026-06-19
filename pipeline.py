@@ -11,7 +11,14 @@ AUDIO_EXTENSIONS = {".wav", ".mp3", ".flac", ".ogg", ".m4a"}
 
 
 def run() -> None:
-    preprocessor = Preprocessor(debug=True)
+    preprocessor = Preprocessor(
+        debug=True,
+        lang_filter_backend="mms",
+        strip_languages_prob_threshold_speech=0.5,
+        remove_nonspeech=True,
+        vad_threshold=0.6,
+        merge_short_ms=2000,
+    )
     for input_file in INPUT_DIR.iterdir():
         if input_file.suffix.lower() not in AUDIO_EXTENSIONS:
             continue

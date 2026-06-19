@@ -1,2 +1,10 @@
 pydub
 demucs
+torch>=2.0
+torchaudio
+numpy
+librosa
+audiotsm
+pyrubberband
+openai-whisper
+transformers

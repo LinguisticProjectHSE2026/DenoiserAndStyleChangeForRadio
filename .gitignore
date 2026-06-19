@@ -1,2 +1,10 @@
 .venv/
 .claude/
+__pycache__/
+.pytest_cache/
+tmp/
+output/
+target/
+demo/
+demo/
+.DS_Store
